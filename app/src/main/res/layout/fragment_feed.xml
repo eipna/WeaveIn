@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.FeedFragment"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:text="Feed Page"
+        android:textAppearance="?attr/textAppearanceDisplayMedium"
+        android:textColor="?attr/colorOnSurface"
+        android:fontFamily="serif"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.6"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_add"
+        app:elevation="6dp"
+        app:hoveredFocusedTranslationZ="2dp"/>
+</FrameLayout>

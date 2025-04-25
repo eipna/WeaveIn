@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="15dp"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="15dp"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_margin="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="top|left"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/profile_pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_below="@id/profile_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"/>
+        <Button
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="190dp"
+            android:layout_below="@id/profile_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Like"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

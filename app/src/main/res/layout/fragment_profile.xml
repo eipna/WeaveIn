@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.ProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/profile_pic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_profile"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_below="@id/profile_pic"
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_below="@id/divider"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_below="@id/divider"
+                android:layout_toEndOf="@id/name"
+                android:id="@+id/comma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=","
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge" />
+
+            <TextView
+                android:layout_below="@id/divider"
+                android:layout_toEndOf="@id/comma"
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+                android:layout_marginLeft="10dp"/>
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/divider"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:alpha="0.4"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_below="@id/name"
+                android:id="@+id/bio"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Bio"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:gravity="left|center"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_below="@id/bio"
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_height="40dp"
+                android:gravity="left|center"
+                android:text="Gender"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/bio"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_below="@id/gender"
+                android:id="@+id/interest"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:focusable="true"
+                android:gravity="left|center"
+                android:text="Interest"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/gender"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_below="@id/interest"
+                android:id="@+id/religion"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:focusable="true"
+                android:gravity="left|center"
+                android:text="Religion"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/interest"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_below="@id/religion"
+                android:id="@+id/language"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:focusable="true"
+                android:gravity="left|center"
+                android:text="Language"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/religion"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+           <com.google.android.material.divider.MaterialDivider
+               android:layout_below="@id/language"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:dividerColor="@color/black"
+               android:alpha="0.4"/>
+
+            <TextView
+                android:layout_below="@id/language"
+                android:id="@+id/preferences"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:gravity="left|center"
+                android:textStyle="bold"
+                android:text="Preferences:"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/agePreference"
+                android:layout_below="@id/preferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age: //Slide Value"
+                android:layout_marginLeft="10dp"/>
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/agePrefSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/agePreference"/>
+
+            <TextView
+                android:layout_below="@id/agePrefSlider"
+                android:id="@+id/genderPreference"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="left|center"
+                android:text="Gender"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/agePrefSlider"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/DistancePreference"
+                android:layout_below="@id/genderPreference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance: //Slide Value"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/DistancePrefSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/DistancePreference"/>
+
+            <TextView
+                android:layout_below="@id/DistancePrefSlider"
+                android:id="@+id/languagePreference"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="left|center"
+                android:text="Language"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/DistancePrefSlider"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_below="@id/languagePreference"
+                android:id="@+id/ReligionPreference"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="left|center"
+                android:text="Religion"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:alpha="0.6"
+                android:layout_below="@id/languagePreference"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>
