@@ -141,4 +141,7 @@
     <color name="md_theme_surfaceContainerHigh_highContrast">#E2D1CC</color>
     <color name="md_theme_surfaceContainerHighest_highContrast">#D4C3BE</color>
     <color name="black">#000000</color>
+    <color name="my_chat">#FF8080</color>
+    <color name="chat_text">#ececec</color>
+    <color name="other_chat">#777777</color>
 </resources>

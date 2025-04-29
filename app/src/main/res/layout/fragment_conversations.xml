@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.MatchesFragment">
+    tools:context=".ui.fragments.ConversationsFragment">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!--show if premium user-->
         <com.google.android.material.search.SearchBar
             android:id="@+id/search_bar"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -23,5 +21,4 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
-
-   </FrameLayout>
+</FrameLayout>

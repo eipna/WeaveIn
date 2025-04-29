@@ -290,6 +290,96 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"/>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_below="@id/ReligionPreference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/black"
+                android:alpha="0.4"/>
+
+            <TextView
+                android:layout_below="@id/ReligionPreference"
+                android:id="@+id/Subscription"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:gravity="left|center"
+                android:textStyle="bold"
+                android:text="Subscription:"
+                android:layout_marginLeft="10dp"/>
+
+            <GridLayout
+                android:layout_below="@id/Subscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="1"
+                android:columnCount="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    app:cardElevation="20dp"
+                    android:layout_margin="20dp"
+                    android:layout_height="150dp"
+                    android:layout_width="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Monthly"
+                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="USD 12"
+                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    app:cardElevation="20dp"
+                    android:layout_margin="20dp"
+                    android:layout_height="150dp"
+                    android:layout_width="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Annual"
+                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="USD 100"
+                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </GridLayout>
+
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>

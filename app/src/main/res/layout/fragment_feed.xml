@@ -7,15 +7,20 @@
     tools:context=".ui.fragments.FeedFragment"
     android:fitsSystemWindows="true">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:text="Feed Page"
-        android:textAppearance="?attr/textAppearanceDisplayMedium"
-        android:textColor="?attr/colorOnSurface"
-        android:fontFamily="serif"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.6"/>
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:text="Feed Page"-->
+<!--        android:textAppearance="?attr/textAppearanceDisplayMedium"-->
+<!--        android:textColor="?attr/colorOnSurface"-->
+<!--        android:fontFamily="serif"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:alpha="0.6"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
