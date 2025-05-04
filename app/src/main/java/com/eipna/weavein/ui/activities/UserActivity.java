@@ -9,15 +9,21 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.eipna.weavein.R;
+import com.eipna.weavein.data.Database;
+import com.eipna.weavein.data.User;
 import com.eipna.weavein.databinding.ActivityUserBinding;
 import com.eipna.weavein.ui.fragments.ChatFragment;
 import com.eipna.weavein.ui.fragments.FeedFragment;
 import com.eipna.weavein.ui.fragments.MatchesFragment;
 import com.eipna.weavein.ui.fragments.ProfileFragment;
+import com.eipna.weavein.util.PreferenceUtil;
 
 public class UserActivity extends AppCompatActivity {
 
     private ActivityUserBinding binding;
+    private Database database;
+    private PreferenceUtil preferenceUtil;
+    private User currentUser;
 
     @Override
     protected void onDestroy() {
@@ -33,9 +39,13 @@ public class UserActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, 0, systemBars.right, 0);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
             return insets;
         });
+
+        preferenceUtil = new PreferenceUtil(this);
+        database = new Database(this);
+        currentUser = database.getUser(preferenceUtil.getUserID());
 
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)

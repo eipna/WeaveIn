@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            if (emailText.equals("admin") && passwordText.equals("admin")) {
+                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, AdminActivity.class));
+                finish();
+                return;
+            }
+
             long userID = database.login(emailText, passwordText);
             if (userID == -1) {
                 binding.inputEmail.setText("");

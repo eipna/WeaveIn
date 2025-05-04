@@ -1,5 +1,119 @@
 <resources>
     <string name="app_name">WeaveIn</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="age_range">
+        <item>28.0</item>
+        <item>39.0</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Chinese</item>
+        <item>Japanese</item>
+        <item>Korean</item>
+        <item>Russian</item>
+        <item>Portuguese</item>
+        <item>Italian</item>
+        <item>Hindi</item>
+        <item>Arabic</item>
+        <item>Swahili</item>
+        <item>Dutch</item>
+        <item>Turkish</item>
+        <item>Vietnamese</item>
+        <item>Thai</item>
+        <item>Indonesian</item>
+        <item>Polish</item>
+        <item>Swedish</item>
+    </string-array>
+
+    <string-array name="religions">
+        <item>Christianity</item>
+        <item>Islam</item>
+        <item>Hinduism</item>
+        <item>Buddhism</item>
+        <item>Judaism</item>
+        <item>Sikhism</item>
+        <item>Atheism</item>
+        <item>Agnosticism</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="countries">
+        <item>United States</item>
+        <item>Canada</item>
+        <item>United Kingdom</item>
+        <item>Germany</item>
+        <item>France</item>
+        <item>Japan</item>
+        <item>China</item>
+        <item>India</item>
+        <item>Brazil</item>
+        <item>Australia</item>
+        <item>Russia</item>
+        <item>Mexico</item>
+        <item>Italy</item>
+        <item>Spain</item>
+        <item>South Korea</item>
+        <item>Netherlands</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Norway</item>
+        <item>Denmark</item>
+        <item>Finland</item>
+        <item>New Zealand</item>
+        <item>South Africa</item>
+        <item>Argentina</item>
+        <item>Ireland</item>
+        <item>Israel</item>
+        <item>Singapore</item>
+        <item>Malaysia</item>
+        <item>Thailand</item>
+        <item>Indonesia</item>
+        <item>Vietnam</item>
+        <item>Philippines</item>
+        <item>Pakistan</item>
+        <item>Bangladesh</item>
+        <item>Egypt</item>
+        <item>Nigeria</item>
+        <item>Kenya</item>
+        <item>Iran</item>
+        <item>Turkey</item>
+    </string-array>
+
+    <string-array name="hobbies">
+        <item>Reading</item>
+        <item>Traveling</item>
+        <item>Cooking</item>
+        <item>Hiking</item>
+        <item>Photography</item>
+        <item>Playing music</item>
+        <item>Watching movies</item>
+        <item>Gaming</item>
+        <item>Yoga</item>
+        <item>Painting</item>
+        <item>Gardening</item>
+        <item>Dancing</item>
+        <item>Fishing</item>
+        <item>Running</item>
+        <item>Cycling</item>
+        <item>Writing</item>
+        <item>Volunteering</item>
+        <item>Learning languages</item>
+        <item>Attending concerts</item>
+        <item>Trying new restaurants</item>
+        <item>Board games</item>
+        <item>Coding</item>
+        <item>Astrology</item>
+        <item>Collecting</item>
+        <item>meditation</item>
+    </string-array>
 </resources>

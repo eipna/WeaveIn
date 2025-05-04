@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--show if premium user-->
         <com.google.android.material.search.SearchBar
             android:id="@+id/search_bar"
             android:visibility="gone"
@@ -21,7 +20,5 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
     </LinearLayout>
-
-   </FrameLayout>
+</FrameLayout>
