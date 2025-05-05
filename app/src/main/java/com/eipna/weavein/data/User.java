@@ -9,11 +9,15 @@ public class User {
     private String password;
     private String type;
     private String phoneNumber;
+    private int isPrivate;
 
-    public static String TYPE_FREE = "FREE";
-    public static String TYPE_PREMIUM = "PREMIUM";
+    public static final String TYPE_FREE = "FREE";
+    public static final String TYPE_PREMIUM = "PREMIUM";
 
-    public User(int ID, String fullName, int age, String gender, String email, String password, String type, String phoneNumber) {
+    public static final int IS_PRIVATE = 1;
+    public static final int NOT_PRIVATE = 0;
+
+    public User(int ID, String fullName, int age, String gender, String email, String password, String type, String phoneNumber, int isPrivate) {
         this.ID = ID;
         this.fullName = fullName;
         this.age = age;
@@ -22,6 +26,15 @@ public class User {
         this.password = password;
         this.type = type;
         this.phoneNumber = phoneNumber;
+        this.isPrivate = isPrivate;
+    }
+
+    public int getIsPrivate() {
+        return isPrivate;
+    }
+
+    public void setIsPrivate(int isPrivate) {
+        this.isPrivate = isPrivate;
     }
 
     public String getFullName() {

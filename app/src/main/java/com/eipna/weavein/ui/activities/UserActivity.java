@@ -1,8 +1,13 @@
 package com.eipna.weavein.ui.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,13 +22,12 @@ import com.eipna.weavein.ui.fragments.FeedFragment;
 import com.eipna.weavein.ui.fragments.MatchesFragment;
 import com.eipna.weavein.ui.fragments.ProfileFragment;
 import com.eipna.weavein.util.PreferenceUtil;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class UserActivity extends AppCompatActivity {
 
     private ActivityUserBinding binding;
-    private Database database;
     private PreferenceUtil preferenceUtil;
-    private User currentUser;
 
     @Override
     protected void onDestroy() {
@@ -44,8 +48,6 @@ public class UserActivity extends AppCompatActivity {
         });
 
         preferenceUtil = new PreferenceUtil(this);
-        database = new Database(this);
-        currentUser = database.getUser(preferenceUtil.getUserID());
 
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
@@ -85,6 +87,23 @@ public class UserActivity extends AppCompatActivity {
                         .commit();
             }
             return true;
+        });
+
+        binding.toolbar.setNavigationOnClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(UserActivity.this)
+                    .setTitle("Logout account?")
+                    .setMessage("This will log you out of the current session.")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Logout", (dialog, which) -> {
+                        preferenceUtil.setUserID(-1);
+                        Intent logoutIntent = new Intent(UserActivity.this, MainActivity.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(logoutIntent);
+                        finish();
+                    });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
     }
 }

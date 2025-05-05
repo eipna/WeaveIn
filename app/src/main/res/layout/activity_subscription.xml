@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.SubscriptionActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Subscribe to premium"
+        app:titleTextColor="?attr/colorOnSurface"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Plan Options"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="16dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Monthly Plan"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="USD 12/month"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMonthlySubscribe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Subscribe Monthly"
+                        android:layout_marginTop="16dp"
+                        style="@style/Widget.Material3.Button"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Annual Plan"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="USD 100/year"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAnnualSubscribe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Subscribe Annual"
+                        android:layout_marginTop="16dp"
+                        style="@style/Widget.Material3.Button"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorPrimary"
+                android:text="Payment Methods"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:layout_marginBottom="16dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Available Payment Methods"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkCreditCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Credit Card"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkDebitCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Debit Card"/>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkEWallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="E-Wallet"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorPrimary"
+                android:text="Features Comparison"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:layout_marginBottom="16dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Free User Features"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Public profile visibility"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Up to 10 matches"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Chat with matches only"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Premium User Features"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Customizable profile visibility"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Up to 10 matches"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Advanced search features"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Unlimited messaging"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

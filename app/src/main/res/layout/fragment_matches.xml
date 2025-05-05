@@ -5,20 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.MatchesFragment">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/search_bar"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 </FrameLayout>

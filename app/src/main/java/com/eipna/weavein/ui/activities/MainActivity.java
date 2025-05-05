@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            long userID = database.login(emailText, passwordText);
+            int userID = database.login(emailText, passwordText);
             if (userID == -1) {
                 binding.inputEmail.setText("");
                 binding.inputPassword.setText("");

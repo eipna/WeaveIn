@@ -13,11 +13,11 @@ public class PreferenceUtil {
         this.sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
     }
 
-    public void setUserID(long userID) {
-        sharedPreferences.edit().putLong("user_id", userID).apply();
+    public void setUserID(int userID) {
+        sharedPreferences.edit().putInt("user_id", userID).apply();
     }
 
-    public long getUserID() {
-        return sharedPreferences.getLong("user_id", -1);
+    public int getUserID() {
+        return sharedPreferences.getInt("user_id", -1);
     }
 }

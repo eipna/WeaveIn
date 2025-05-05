@@ -36,23 +36,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.card.MaterialCardView
-                app:cardCornerRadius="64dp"
+            <ImageView
+                android:id="@+id/profile_picture"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account"
+                android:layout_marginTop="16dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
                 android:layout_width="150dp"
-                android:layout_height="150dp">
-
-                <ImageView
-                    android:id="@+id/profile_picture"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_profile_picture"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </com.google.android.material.card.MaterialCardView>
+                android:layout_height="150dp"
+                android:layout_marginBottom="24dp"
+                app:tint="?attr/colorSecondary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/change_profile_picture"
+                android:visibility="gone"
                 android:text="Change profile picture"
                 android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
@@ -153,9 +150,19 @@
                     android:layout_height="match_parent"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/private_switch"
+                android:text="Set profile as private"
+                android:textColor="?attr/colorOnSurface"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_profile"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Save profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

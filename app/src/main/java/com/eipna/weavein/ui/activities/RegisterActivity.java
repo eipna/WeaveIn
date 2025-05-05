@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            if (database.register(fullNameText, Integer.parseInt(ageText), genderText, emailText, phoneNumberText, passwordText, User.TYPE_FREE)) {
+            if (database.register(fullNameText, Integer.parseInt(ageText), genderText, emailText, phoneNumberText, passwordText, User.TYPE_FREE, User.NOT_PRIVATE)) {
                 binding.inputFullName.setText("");
                 binding.inputAge.setText("");
                 binding.inputGender.setText("");

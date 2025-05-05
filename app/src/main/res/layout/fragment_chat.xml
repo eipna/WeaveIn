@@ -6,45 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.ChatFragment">
 
-   <LinearLayout
-       android:orientation="vertical"
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycler_view"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
-
-      <androidx.recyclerview.widget.RecyclerView
-          android:layout_weight="90"
-          android:id="@+id/recycler_view"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
-
-      <LinearLayout
-          android:layout_margin="10dp"
-          android:layout_weight="1"
-          android:orientation="horizontal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-
-         <com.google.android.material.textfield.TextInputLayout
-             android:layout_gravity="center"
-             app:boxCornerRadiusBottomEnd="16dp"
-             app:boxCornerRadiusTopStart="16dp"
-             app:boxCornerRadiusTopEnd="16dp"
-             app:boxCornerRadiusBottomStart="16dp"
-             android:layout_width="300dp"
-             android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-         </com.google.android.material.textfield.TextInputLayout>
-
-         <ImageView
-             android:layout_gravity="center"
-             android:layout_width="40dp"
-             android:layout_height="40dp"
-            android:src="@drawable/ic_send"/>
-
-      </LinearLayout>
-   </LinearLayout>
+       android:layout_height="match_parent"/>
 </FrameLayout>

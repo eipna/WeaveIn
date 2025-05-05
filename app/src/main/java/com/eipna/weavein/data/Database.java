@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class Database extends SQLiteOpenHelper {
     public Database(@Nullable Context context) {
         super(context, "weavein.db", null, 1);
@@ -23,7 +25,9 @@ public class Database extends SQLiteOpenHelper {
                 "email TEXT NOT NULL UNIQUE, " +
                 "password TEXT NOT NULL, " +
                 "type TEXT NOT NULL, " +
-                "phone_number TEXT NOT NULL UNIQUE);";
+                "phone_number TEXT NOT NULL UNIQUE, " +
+                "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                "is_private INTEGER NOT NULL);";
 
         String createPreferencesTable = "CREATE TABLE preferences(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -35,18 +39,25 @@ public class Database extends SQLiteOpenHelper {
                 "religion TEXT, " +
                 "hobbies TEXT);";
 
+        String createPhotosTable = "CREATE TABLE photos(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_id INTEGER NOT NULL, " +
+                "photo BLOB NOT NULL);";
+
         db.execSQL(createUserTable);
         db.execSQL(createPreferencesTable);
+        db.execSQL(createPhotosTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE users;");
         db.execSQL("DROP TABLE preferences;");
+        db.execSQL("DROP TABLE photos;");
         onCreate(db);
     }
 
-    public long login(String email, String password) {
+    public int login(String email, String password) {
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM users WHERE email = ? AND password = ?", new String[]{email, password});
 
@@ -61,7 +72,7 @@ public class Database extends SQLiteOpenHelper {
         return -1;
     }
 
-    public boolean register(String fullName, int age, String gender, String email, String phoneNumber, String password, String type) {
+    public boolean register(String fullName, int age, String gender, String email, String phoneNumber, String password, String type, int isPrivate) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("full_name", fullName);
@@ -71,6 +82,7 @@ public class Database extends SQLiteOpenHelper {
         values.put("phone_number", phoneNumber);
         values.put("password", password);
         values.put("type", type);
+        values.put("is_private", isPrivate);
 
         long result = database.insert("users", null, values);
 
@@ -83,7 +95,7 @@ public class Database extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public User getUser(long userID) {
+    public User getUser(int userID) {
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM users WHERE id = ?", new String[]{String.valueOf(userID)});
 
@@ -96,7 +108,8 @@ public class Database extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndexOrThrow("email")),
                     cursor.getString(cursor.getColumnIndexOrThrow("password")),
                     cursor.getString(cursor.getColumnIndexOrThrow("type")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("phone_number"))
+                    cursor.getString(cursor.getColumnIndexOrThrow("phone_number")),
+                    cursor.getInt(cursor.getColumnIndexOrThrow("is_private"))
             );
             cursor.close();
             database.close();
@@ -142,6 +155,7 @@ public class Database extends SQLiteOpenHelper {
         values.put("email", user.getEmail());
         values.put("password", user.getPassword());
         values.put("phone_number", user.getPhoneNumber());
+        values.put("type", user.getType());
         long result = database.update("users", values, "id = ?", new String[]{String.valueOf(user.getID())});
         database.close();
 
@@ -160,5 +174,76 @@ public class Database extends SQLiteOpenHelper {
         values.put("hobbies", preferences.getHobbies());
         database.update("preferences", values, "user_id = ?", new String[]{String.valueOf(preferences.getUserID())});
         database.close();
+    }
+
+    public Cursor getNewUsersForToday(String userType) {
+        SQLiteDatabase database = getReadableDatabase();
+        String query = "SELECT * FROM users WHERE type = ? AND date(created_at) = date('now');";
+        return database.rawQuery(query, new String[]{userType});
+    }
+
+    public Cursor getNewUsersForWeek(String userType) {
+        SQLiteDatabase database = getReadableDatabase();
+        String query = "SELECT * FROM users WHERE type = ? AND date(created_at) >= date('now', '-7 days');";
+        return database.rawQuery(query, new String[]{userType});
+    }
+
+    public Cursor getNewUsersForMonth(String userType) {
+        SQLiteDatabase database = getReadableDatabase();
+        String query = "SELECT * FROM users WHERE type = ? AND date(created_at) >= date('now', '-30 days');";
+        return database.rawQuery(query, new String[]{userType});
+    }
+
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> userList = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        String query = "SELECT * FROM users;";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                User user = new User(
+                    cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("full_name")),
+                    cursor.getInt(cursor.getColumnIndexOrThrow("age")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("gender")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("email")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("password")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("type")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("phone_number")),
+                    cursor.getInt(cursor.getColumnIndexOrThrow("is_private")));
+                userList.add(user);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return userList;
+    }
+
+    public void uploadPhoto(int userID, byte[] photo) {
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("user_id", userID);
+        values.put("photo", photo);
+        database.insert("photos", null, values);
+        database.close();
+    }
+
+    public ArrayList<Photo> getPhotos(int userID) {
+        SQLiteDatabase database = getReadableDatabase();
+        ArrayList<Photo> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM photos WHERE user_id = ?;", new String[]{String.valueOf(userID)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                int ID = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int user_id = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
+                byte[] photo = cursor.getBlob(cursor.getColumnIndexOrThrow("photo"));
+                list.add(new Photo(ID, user_id, photo));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return list;
     }
 }

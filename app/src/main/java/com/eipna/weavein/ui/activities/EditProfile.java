@@ -64,12 +64,15 @@ public class EditProfile extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        binding.privateSwitch.setVisibility(currentUser.getType().equals(User.TYPE_PREMIUM) ? View.VISIBLE : View.GONE);
+
         binding.fullName.setText(currentUser.getFullName());
         binding.age.setText(String.valueOf(currentUser.getAge()));
         binding.gender.setText(currentUser.getGender(), false);
         binding.emailAddress.setText(currentUser.getEmail());
         binding.phoneNumber.setText(currentUser.getPhoneNumber());
         binding.password.setText(currentUser.getPassword());
+        binding.privateSwitch.setChecked(currentUser.getIsPrivate() == User.IS_PRIVATE);
 
         binding.saveProfile.setOnClickListener(v -> saveProfileDetails());
     }
@@ -81,7 +84,7 @@ public class EditProfile extends AppCompatActivity {
         String emailAddressText = binding.emailAddress.getText().toString();
         String passwordText = binding.password.getText().toString();
         String phoneNumberText = binding.phoneNumber.getText().toString();
-        
+
         if (fullNameText.isEmpty() || ageText.isEmpty() || genderText.isEmpty() || emailAddressText.isEmpty() || passwordText.isEmpty() || phoneNumberText.isEmpty()) {
             Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
             return;
@@ -91,8 +94,10 @@ public class EditProfile extends AppCompatActivity {
             Toast.makeText(this, "Invalid age", Toast.LENGTH_SHORT).show();
             return;
         }
-        
-        User user = new User(currentUser.getID(), fullNameText, Integer.parseInt(ageText), genderText, emailAddressText, passwordText, User.TYPE_FREE, phoneNumberText);
+
+        int isPrimateEnabled = (binding.privateSwitch.isChecked()) ? User.IS_PRIVATE : User.NOT_PRIVATE;
+        User user = new User(currentUser.getID(), fullNameText, Integer.parseInt(ageText), genderText, emailAddressText, passwordText, User.TYPE_FREE, phoneNumberText, isPrimateEnabled);
+
         if (database.updateProfile(user)) {
             Toast.makeText(this, "Profile has been saved", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);

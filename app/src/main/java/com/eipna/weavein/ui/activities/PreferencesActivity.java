@@ -83,18 +83,21 @@ public class PreferencesActivity extends AppCompatActivity {
         binding.preferencesGender.setText(currentPreferences.getGender(), false);
         binding.country.setText(currentPreferences.getCountry(), false);
 
-        binding.ageSlider.setValues(getAgeRange());
+        if (currentPreferences.getAge() != null) {
+            binding.ageSlider.setValues(getAgeRange());
+        }
 
-        List<Integer> selectedHobbiesIDs = getSelectedHobbiesIDs();
-        for (Integer selectedHobbyId : selectedHobbiesIDs) {
-            binding.hobbiesChipGroup.check(selectedHobbyId);
+        if (currentPreferences.getHobbies() != null) {
+            List<Integer> selectedHobbiesIDs = getSelectedHobbiesIDs();
+            for (Integer selectedHobbyId : selectedHobbiesIDs) {
+                binding.hobbiesChipGroup.check(selectedHobbyId);
+            }
         }
     }
 
     public List<Integer> getSelectedHobbiesIDs() {
         List<Integer> IDs = new ArrayList<>();
         String[] selectedHobbies = currentPreferences.getHobbies().split(",");
-
         for (String hobby : selectedHobbies) {
             for (int i = 0; i < hobbies.length; i++) {
                 if (hobbies[i].equals(hobby)) {
@@ -102,7 +105,6 @@ public class PreferencesActivity extends AppCompatActivity {
                 }
             }
         }
-
         return IDs;
     }
 

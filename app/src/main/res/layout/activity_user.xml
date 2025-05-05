@@ -19,6 +19,9 @@
             android:id="@+id/toolbar"
             app:title="Feed"
             app:titleTextColor="?attr/colorOnSurface"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/ic_logout"
+            app:navigationIconTint="?attr/colorOnSurfaceVariant"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
     </com.google.android.material.appbar.AppBarLayout>

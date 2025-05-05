@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,12 +8,254 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.AdminActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        app:liftOnScrollColor="?attr/colorSurface"
+        app:liftOnScroll="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         app:title="Admin Dashboard"
         app:titleTextColor="?attr/colorOnSurface"
+        app:navigationIcon="@drawable/ic_logout"
+        app:navigationIconTint="?attr/colorOnSurfaceVariant"
         app:titleCentered="true"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="User Management"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:layout_marginBottom="16dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewAllUsers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View All Users"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:visibility="gone"
+                        android:id="@+id/btnManageRoles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Manage User Roles"
+                        android:layout_marginTop="8dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moderation Tools"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:layout_marginBottom="16dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModeratePosts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate Posts"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModerateMessages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate Messages"
+                        android:layout_marginTop="8dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModerateProfiles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moderate Profiles"
+                        android:layout_marginTop="8dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Analytics Dashboard"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            style="@style/Widget.Material3.CardView.Filled">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="16dp"
+                                android:gravity="center">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/txtTotalMatches"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textAppearance="?attr/textAppearanceHeadlineMedium"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Matches"
+                                    android:textAppearance="?attr/textAppearanceBodyMedium"/>
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            style="@style/Widget.Material3.CardView.Filled">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="16dp"
+                                android:gravity="center">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/txtActiveUsers"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textAppearance="?attr/textAppearanceHeadlineMedium"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Active Users"
+                                    android:textAppearance="?attr/textAppearanceBodyMedium"/>
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reports"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:layout_marginBottom="16dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDailyReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Daily User Report"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWeeklyReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Weekly User Report"
+                        android:layout_marginTop="8dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMonthlyReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Monthly User Report"
+                    android:layout_marginTop="8dp"
+                    style="@style/Widget.Material3.Button.OutlinedButton"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
