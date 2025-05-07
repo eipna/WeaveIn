@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-05-06T05:18:21.417731400Z">
+        <DropdownSelection timestamp="2025-05-07T05:36:38.295926900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Vrixzandro Eliponga\.android\avd\Oreo.avd" />

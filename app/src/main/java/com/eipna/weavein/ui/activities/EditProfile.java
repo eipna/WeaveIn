@@ -75,6 +75,7 @@ public class EditProfile extends AppCompatActivity {
         }
 
         binding.privateSwitch.setVisibility(currentUser.getType().equals(User.TYPE_PREMIUM) ? View.VISIBLE : View.GONE);
+        binding.privateSwitch.setChecked(currentUser.getIsPrivate() == User.IS_PRIVATE);
 
         binding.fullName.setText(currentUser.getFullName());
         binding.age.setText(String.valueOf(currentUser.getAge()));
@@ -144,7 +145,7 @@ public class EditProfile extends AppCompatActivity {
         user.setReligion(religionText);
         user.setCountry(countryText);
         user.setHobbies(hobbiesText);
-        user.setType(user.getType());
+        user.setType(currentUser.getType());
         user.setIsPrivate(isPrivateEnabled);
         user.setEmail(emailText);
         user.setPassword(passwordText);

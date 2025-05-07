@@ -179,6 +179,7 @@ public class Database extends SQLiteOpenHelper {
         values.put("country", user.getCountry());
         values.put("hobbies", user.getHobbies());
         values.put("type", user.getType());
+        values.put("is_private", user.getIsPrivate());
         long result = database.update("users", values, "id = ?", new String[]{String.valueOf(user.getID())});
         database.close();
 

@@ -1,10 +1,12 @@
 package com.eipna.weavein.ui.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -22,11 +24,12 @@ import com.eipna.weavein.data.User;
 import com.eipna.weavein.databinding.FragmentMatchesBinding;
 import com.eipna.weavein.ui.adapters.MatchesAdapter;
 import com.eipna.weavein.util.PreferenceUtil;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MatchesFragment extends Fragment {
+public class MatchesFragment extends Fragment implements MatchesAdapter.Listener {
 
     private FragmentMatchesBinding binding;
     private Database database;
@@ -52,7 +55,7 @@ public class MatchesFragment extends Fragment {
         preferences = new ArrayList<>(database.getAllPreference());
         userPreferences = getPreferences(preferenceUtil.getUserID());
 
-        matchesAdapter = new MatchesAdapter(requireContext(), users);
+        matchesAdapter = new MatchesAdapter(requireContext(), this, users);
 
         binding.filterLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -239,5 +242,27 @@ public class MatchesFragment extends Fragment {
             }
         }
         return null;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onSkipClick(int position) {
+        users.remove(position);
+        matchesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onMatchClick(int position) {
+        User user = users.get(position);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Account matched")
+                .setMessage("You are now connected with " + user.getFullName() + ".")
+                .setPositiveButton("Close", (dialog, which) -> {
+                    users.remove(position);
+                    matchesAdapter.notifyDataSetChanged();
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
