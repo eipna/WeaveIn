@@ -60,6 +60,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/private_switch"
+                android:text="Set profile as private"
+                android:textColor="?attr/colorOnSurface"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:hint="Full Name"
                 android:layout_width="match_parent"
@@ -150,15 +160,78 @@
                     android:layout_height="match_parent"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/private_switch"
-                android:text="Set profile as private"
-                android:textColor="?attr/colorOnSurface"
-                android:textAppearance="?attr/textAppearanceTitleSmall"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="8dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="16dp"
+                android:hint="Language"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/language"
+                    app:simpleItems="@array/languages"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="16dp"
+                android:hint="Country"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/country"
+                    app:simpleItems="@array/countries"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint="Religion"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/religion"
+                    app:simpleItems="@array/religions"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="Your hobbies"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="4dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/hobbies_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:chipSpacing="8dp"
+                app:chipSpacingHorizontal="8dp"
+                app:chipSpacingVertical="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+            </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_profile"

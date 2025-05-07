@@ -64,6 +64,16 @@ public class EditProfile extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        for (int index = 0; index < hobbies.length; index++) {
+            Chip chip = new Chip(this);
+            chip.setId(index);
+            chip.setText(hobbies[index]);
+            chip.setCheckable(true);
+            chip.setFocusable(true);
+            chip.setClickable(true);
+            binding.hobbiesChipGroup.addView(chip);
+        }
+
         binding.privateSwitch.setVisibility(currentUser.getType().equals(User.TYPE_PREMIUM) ? View.VISIBLE : View.GONE);
 
         binding.fullName.setText(currentUser.getFullName());
@@ -73,30 +83,72 @@ public class EditProfile extends AppCompatActivity {
         binding.phoneNumber.setText(currentUser.getPhoneNumber());
         binding.password.setText(currentUser.getPassword());
         binding.privateSwitch.setChecked(currentUser.getIsPrivate() == User.IS_PRIVATE);
+        binding.language.setText(currentUser.getLanguage(), false);
+        binding.country.setText(currentUser.getCountry(), false);
+        binding.religion.setText(currentUser.getReligion(), false);
+
+        if (currentUser.getHobbies() != null) {
+            List<Integer> selectedHobbiesIDs = getSelectedHobbiesIDs();
+            for (Integer selectedHobbyId : selectedHobbiesIDs) {
+                binding.hobbiesChipGroup.check(selectedHobbyId);
+            }
+        }
 
         binding.saveProfile.setOnClickListener(v -> saveProfileDetails());
+    }
+
+    public List<Integer> getSelectedHobbiesIDs() {
+        List<Integer> IDs = new ArrayList<>();
+        String[] selectedHobbies = currentUser.getHobbies().split(",");
+        for (String hobby : selectedHobbies) {
+            for (int i = 0; i < hobbies.length; i++) {
+                if (hobbies[i].equals(hobby)) {
+                    IDs.add(i);
+                }
+            }
+        }
+        return IDs;
     }
 
     private void saveProfileDetails() {
         String fullNameText = binding.fullName.getText().toString();
         String ageText = binding.age.getText().toString();
         String genderText = binding.gender.getText().toString();
-        String emailAddressText = binding.emailAddress.getText().toString();
-        String passwordText = binding.password.getText().toString();
+        String emailText = binding.emailAddress.getText().toString();
         String phoneNumberText = binding.phoneNumber.getText().toString();
+        String passwordText = binding.password.getText().toString();
+        String languageText = binding.language.getText().toString();
+        String religionText = binding.religion.getText().toString();
+        String countryText = binding.country.getText().toString();
+        String hobbiesText = getHobbiesPreference();
 
-        if (fullNameText.isEmpty() || ageText.isEmpty() || genderText.isEmpty() || emailAddressText.isEmpty() || passwordText.isEmpty() || phoneNumberText.isEmpty()) {
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+        if (emailText.isEmpty() || phoneNumberText.isEmpty() || passwordText.isEmpty() || fullNameText.isEmpty() || ageText.isEmpty() || genderText.isEmpty() ||
+                languageText.isEmpty() || religionText.isEmpty() || countryText.isEmpty() || hobbiesText.isEmpty()) {
+            Toast.makeText(EditProfile.this, "Please fill out all information needed", Toast.LENGTH_SHORT).show();
             return;
         }
-        
+
         if (Integer.parseInt(ageText) < 18 || Integer.parseInt(ageText) > 80) {
             Toast.makeText(this, "Invalid age", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int isPrimateEnabled = (binding.privateSwitch.isChecked()) ? User.IS_PRIVATE : User.NOT_PRIVATE;
-        User user = new User(currentUser.getID(), fullNameText, Integer.parseInt(ageText), genderText, emailAddressText, passwordText, User.TYPE_FREE, phoneNumberText, isPrimateEnabled);
+        int isPrivateEnabled = (binding.privateSwitch.isChecked()) ? User.IS_PRIVATE : User.NOT_PRIVATE;
+
+        User user = new User();
+        user.setID(currentUser.getID());
+        user.setFullName(fullNameText);
+        user.setAge(Integer.parseInt(ageText));
+        user.setGender(genderText);
+        user.setLanguage(languageText);
+        user.setReligion(religionText);
+        user.setCountry(countryText);
+        user.setHobbies(hobbiesText);
+        user.setType(user.getType());
+        user.setIsPrivate(isPrivateEnabled);
+        user.setEmail(emailText);
+        user.setPassword(passwordText);
+        user.setPhoneNumber(phoneNumberText);
 
         if (database.updateProfile(user)) {
             Toast.makeText(this, "Profile has been saved", Toast.LENGTH_SHORT).show();
@@ -111,5 +163,24 @@ public class EditProfile extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) finish();
         return true;
+    }
+
+    private String getHobbiesPreference() {
+        List<Integer> selectedHobbiesIDs = binding.hobbiesChipGroup.getCheckedChipIds();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Integer selectedHobbyID : selectedHobbiesIDs)  {
+            stringBuilder.append(getChipHobbyName(selectedHobbyID)).append(",");
+        }
+        return stringBuilder.toString();
+    }
+
+    private String getChipHobbyName(int hobbyChipID) {
+        for (int i = 0; i < hobbies.length; i++) {
+            if (i == hobbyChipID) {
+                return hobbies[i];
+            }
+        }
+        return null;
     }
 }

@@ -22,6 +22,10 @@ public class Database extends SQLiteOpenHelper {
                 "full_name TEXT NOT NULL UNIQUE, " +
                 "age INTEGER NOT NULL, " +
                 "gender TEXT NOT NULL, " +
+                "religion TEXT NOT NULL, " +
+                "country TEXT NOT NULL, " +
+                "language TEXT NOT NULL, " +
+                "hobbies TEXT NOT NULL, " +
                 "email TEXT NOT NULL UNIQUE, " +
                 "password TEXT NOT NULL, " +
                 "type TEXT NOT NULL, " +
@@ -39,6 +43,11 @@ public class Database extends SQLiteOpenHelper {
                 "religion TEXT, " +
                 "hobbies TEXT);";
 
+        String createMatchesTable = "CREATE TABLE matches(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "first_user_id INTEGER NOT NULL, " +
+                "second_user_id INTEGER NOT NULL);";
+
         String createPhotosTable = "CREATE TABLE photos(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "user_id INTEGER NOT NULL, " +
@@ -46,6 +55,7 @@ public class Database extends SQLiteOpenHelper {
 
         db.execSQL(createUserTable);
         db.execSQL(createPreferencesTable);
+        db.execSQL(createMatchesTable);
         db.execSQL(createPhotosTable);
     }
 
@@ -54,6 +64,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE users;");
         db.execSQL("DROP TABLE preferences;");
         db.execSQL("DROP TABLE photos;");
+        db.execSQL("DROP TABLE matches;");
         onCreate(db);
     }
 
@@ -72,17 +83,21 @@ public class Database extends SQLiteOpenHelper {
         return -1;
     }
 
-    public boolean register(String fullName, int age, String gender, String email, String phoneNumber, String password, String type, int isPrivate) {
+    public boolean register(User user) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("full_name", fullName);
-        values.put("age", age);
-        values.put("gender", gender);
-        values.put("email", email);
-        values.put("phone_number", phoneNumber);
-        values.put("password", password);
-        values.put("type", type);
-        values.put("is_private", isPrivate);
+        values.put("full_name", user.getFullName());
+        values.put("age", user.getAge());
+        values.put("gender", user.getGender());
+        values.put("email", user.getEmail());
+        values.put("phone_number", user.getPhoneNumber());
+        values.put("password", user.getPassword());
+        values.put("type", user.getType());
+        values.put("is_private", user.getIsPrivate());
+        values.put("religion", user.getReligion());
+        values.put("country", user.getCountry());
+        values.put("language", user.getLanguage());
+        values.put("hobbies", user.getHobbies());
 
         long result = database.insert("users", null, values);
 
@@ -100,17 +115,21 @@ public class Database extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery("SELECT * FROM users WHERE id = ?", new String[]{String.valueOf(userID)});
 
         if (cursor.moveToFirst()) {
-            User user = new User(
-                    cursor.getInt(cursor.getColumnIndexOrThrow("id")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("full_name")),
-                    cursor.getInt(cursor.getColumnIndexOrThrow("age")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("gender")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("email")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("password")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("type")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("phone_number")),
-                    cursor.getInt(cursor.getColumnIndexOrThrow("is_private"))
-            );
+            User user = new User();
+            user.setID(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+            user.setFullName(cursor.getString(cursor.getColumnIndexOrThrow("full_name")));
+            user.setAge(cursor.getInt(cursor.getColumnIndexOrThrow("age")));
+            user.setGender(cursor.getString(cursor.getColumnIndexOrThrow("gender")));
+            user.setLanguage(cursor.getString(cursor.getColumnIndexOrThrow("language")));
+            user.setCountry(cursor.getString(cursor.getColumnIndexOrThrow("country")));
+            user.setHobbies(cursor.getString(cursor.getColumnIndexOrThrow("hobbies")));
+            user.setReligion(cursor.getString(cursor.getColumnIndexOrThrow("religion")));
+            user.setType(cursor.getString(cursor.getColumnIndexOrThrow("type")));
+            user.setIsPrivate(cursor.getInt(cursor.getColumnIndexOrThrow("is_private")));
+            user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
+            user.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("password")));
+            user.setPhoneNumber(cursor.getString(cursor.getColumnIndexOrThrow("phone_number")));
+
             cursor.close();
             database.close();
             return user;
@@ -155,6 +174,10 @@ public class Database extends SQLiteOpenHelper {
         values.put("email", user.getEmail());
         values.put("password", user.getPassword());
         values.put("phone_number", user.getPhoneNumber());
+        values.put("language", user.getLanguage());
+        values.put("religion", user.getReligion());
+        values.put("country", user.getCountry());
+        values.put("hobbies", user.getHobbies());
         values.put("type", user.getType());
         long result = database.update("users", values, "id = ?", new String[]{String.valueOf(user.getID())});
         database.close();
@@ -202,22 +225,51 @@ public class Database extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                User user = new User(
-                    cursor.getInt(cursor.getColumnIndexOrThrow("id")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("full_name")),
-                    cursor.getInt(cursor.getColumnIndexOrThrow("age")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("gender")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("email")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("password")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("type")),
-                    cursor.getString(cursor.getColumnIndexOrThrow("phone_number")),
-                    cursor.getInt(cursor.getColumnIndexOrThrow("is_private")));
+                User user = new User();
+                user.setID(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+                user.setFullName(cursor.getString(cursor.getColumnIndexOrThrow("full_name")));
+                user.setAge(cursor.getInt(cursor.getColumnIndexOrThrow("age")));
+                user.setGender(cursor.getString(cursor.getColumnIndexOrThrow("gender")));
+                user.setLanguage(cursor.getString(cursor.getColumnIndexOrThrow("language")));
+                user.setCountry(cursor.getString(cursor.getColumnIndexOrThrow("country")));
+                user.setHobbies(cursor.getString(cursor.getColumnIndexOrThrow("hobbies")));
+                user.setReligion(cursor.getString(cursor.getColumnIndexOrThrow("religion")));
+                user.setType(cursor.getString(cursor.getColumnIndexOrThrow("type")));
+                user.setIsPrivate(cursor.getInt(cursor.getColumnIndexOrThrow("is_private")));
+                user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
+                user.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("password")));
+                user.setPhoneNumber(cursor.getString(cursor.getColumnIndexOrThrow("phone_number")));
                 userList.add(user);
             } while (cursor.moveToNext());
         }
         cursor.close();
         database.close();
         return userList;
+    }
+
+    public ArrayList<Preferences> getAllPreference() {
+        ArrayList<Preferences> list = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        String query = "SELECT * FROM preferences;";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Preferences preferences = new Preferences();
+                preferences.setID(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+                preferences.setUserID(cursor.getInt(cursor.getColumnIndexOrThrow("user_id")));
+                preferences.setLanguage(cursor.getString(cursor.getColumnIndexOrThrow("language")));
+                preferences.setReligion(cursor.getString(cursor.getColumnIndexOrThrow("religion")));
+                preferences.setCountry(cursor.getString(cursor.getColumnIndexOrThrow("country")));
+                preferences.setAge(cursor.getString(cursor.getColumnIndexOrThrow("age")));
+                preferences.setHobbies(cursor.getString(cursor.getColumnIndexOrThrow("hobbies")));
+                preferences.setGender(cursor.getString(cursor.getColumnIndexOrThrow("gender")));
+                list.add(preferences);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return list;
     }
 
     public void uploadPhoto(int userID, byte[] photo) {
@@ -240,6 +292,49 @@ public class Database extends SQLiteOpenHelper {
                 int user_id = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
                 byte[] photo = cursor.getBlob(cursor.getColumnIndexOrThrow("photo"));
                 list.add(new Photo(ID, user_id, photo));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return list;
+    }
+
+    public void match(int firstUserID, int secondUserID) {
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("first_user_id", firstUserID);
+        values.put("second_user_id", secondUserID);
+        database.insert("matches", null, values);
+        database.close();
+    }
+
+    public ArrayList<User> getOtherUsers(int currentUserID) {
+        ArrayList<User> list = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM users;", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int userID = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                if (userID == currentUserID) {
+                    continue;
+                }
+
+                User user = new User();
+                user.setID(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+                user.setFullName(cursor.getString(cursor.getColumnIndexOrThrow("full_name")));
+                user.setAge(cursor.getInt(cursor.getColumnIndexOrThrow("age")));
+                user.setGender(cursor.getString(cursor.getColumnIndexOrThrow("gender")));
+                user.setLanguage(cursor.getString(cursor.getColumnIndexOrThrow("language")));
+                user.setCountry(cursor.getString(cursor.getColumnIndexOrThrow("country")));
+                user.setHobbies(cursor.getString(cursor.getColumnIndexOrThrow("hobbies")));
+                user.setReligion(cursor.getString(cursor.getColumnIndexOrThrow("religion")));
+                user.setType(cursor.getString(cursor.getColumnIndexOrThrow("type")));
+                user.setIsPrivate(cursor.getInt(cursor.getColumnIndexOrThrow("is_private")));
+                user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
+                user.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("password")));
+                user.setPhoneNumber(cursor.getString(cursor.getColumnIndexOrThrow("phone_number")));
+                list.add(user);
             } while (cursor.moveToNext());
         }
         cursor.close();

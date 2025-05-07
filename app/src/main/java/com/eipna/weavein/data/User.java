@@ -9,6 +9,10 @@ public class User {
     private String password;
     private String type;
     private String phoneNumber;
+    private String language;
+    private String country;
+    private String hobbies;
+    private String religion;
     private int isPrivate;
 
     public static final String TYPE_FREE = "FREE";
@@ -17,7 +21,11 @@ public class User {
     public static final int IS_PRIVATE = 1;
     public static final int NOT_PRIVATE = 0;
 
-    public User(int ID, String fullName, int age, String gender, String email, String password, String type, String phoneNumber, int isPrivate) {
+    public User() {
+
+    }
+
+    public User(int ID, String fullName, int age, String gender, String email, String password, String type, String phoneNumber, String language, String country, String hobbies, String religion, int isPrivate) {
         this.ID = ID;
         this.fullName = fullName;
         this.age = age;
@@ -26,7 +34,43 @@ public class User {
         this.password = password;
         this.type = type;
         this.phoneNumber = phoneNumber;
+        this.language = language;
+        this.country = country;
+        this.hobbies = hobbies;
+        this.religion = religion;
         this.isPrivate = isPrivate;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getReligion() {
+        return religion;
+    }
+
+    public void setReligion(String religion) {
+        this.religion = religion;
     }
 
     public int getIsPrivate() {

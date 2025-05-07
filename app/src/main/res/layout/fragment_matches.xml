@@ -3,10 +3,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.MatchesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:id="@+id/matches_suggestions"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="16dp"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.ChipGroup
+                app:layout_constraintTop_toTopOf="parent"
+                app:singleLine="true"
+                app:singleSelection="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_language"
+                    android:text="Language"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_gender"
+                    android:text="Gender"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_religion"
+                    android:text="Religion"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_country"
+                    android:text="Country"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_age"
+                    android:text="Age"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_hobbies"
+                    android:text="Hobbies"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            app:layout_constraintTop_toBottomOf="@id/matches_suggestions"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
