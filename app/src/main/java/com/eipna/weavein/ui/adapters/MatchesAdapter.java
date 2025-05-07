@@ -24,6 +24,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     public interface Listener {
         void onSkipClick(int position);
         void onMatchClick(int position);
+        void onClick(int position);
     }
 
     public MatchesAdapter(Context context, Listener listener, ArrayList<User> users) {
@@ -46,6 +47,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         holder.details.setText(String.format("%s | %s", user.getGender(), user.getAge()));
         holder.skip.setOnClickListener(v -> listener.onSkipClick(position));
         holder.match.setOnClickListener(v -> listener.onMatchClick(position));
+        holder.itemView.setOnClickListener(v -> listener.onClick(position));
     }
 
     @Override

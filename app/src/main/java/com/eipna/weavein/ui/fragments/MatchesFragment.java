@@ -2,6 +2,7 @@ package com.eipna.weavein.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.eipna.weavein.data.Database;
 import com.eipna.weavein.data.Preferences;
 import com.eipna.weavein.data.User;
 import com.eipna.weavein.databinding.FragmentMatchesBinding;
+import com.eipna.weavein.ui.activities.ProfileActivity;
 import com.eipna.weavein.ui.adapters.MatchesAdapter;
 import com.eipna.weavein.util.PreferenceUtil;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -264,5 +266,12 @@ public class MatchesFragment extends Fragment implements MatchesAdapter.Listener
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void onClick(int position) {
+        Intent profileIntent = new Intent(requireContext(), ProfileActivity.class);
+        profileIntent.putExtra("user_id", users.get(position).getID());
+        startActivity(profileIntent);
     }
 }
